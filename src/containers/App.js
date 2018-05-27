@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Context } from './Provider'
 import HomeContainer from './HomeContainer'
 import AboutContainer from './AboutContainer'
+import '../styles/index.scss'
 
 class App extends Component {
   render() {
