@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false
+      }
+    ],
+    "comma-dangle": ["error", "never"],
+
+    "react/prop-types": 0,
+
+    "global-require": 0,
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+
+    "max-len": [2, 100, 4],
+
+    "import/prefer-default-export": 0
+  }
+}
