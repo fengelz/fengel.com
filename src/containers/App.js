@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Context } from './Provider'
-import HomeContainer from './HomeContainer'
-import AboutContainer from './AboutContainer'
-import '../styles/index.scss'
+import React, { Component } from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { Context } from "./Provider"
+import HomeContainer from "./HomeContainer"
+import AboutContainer from "./AboutContainer"
+import "../styles/index.scss"
 
 class App extends Component {
   render() {
@@ -14,11 +14,11 @@ class App extends Component {
             <Router>
               <main>
                 <section>
-                    <Switch>
-                      <Route exact path="/" component={HomeContainer} />
-                      <Route exact path="/about/" component={AboutContainer} />
-                      <Route component={HomeContainer} />
-                    </Switch>
+                  <Switch>
+                    <Route exact path="/" component={HomeContainer} />
+                    <Route exact path="/about/" component={AboutContainer} />
+                    <Route component={HomeContainer} />
+                  </Switch>
                 </section>
               </main>
             </Router>

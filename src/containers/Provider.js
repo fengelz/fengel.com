@@ -1,17 +1,24 @@
-import React, { Component } from "react";
-import { fetchRoot, fetchPages, fetchPosts, fetchMenus } from "../wpService.js";
+import React, { Component } from "react"
+import {
+  fetchRoot,
+  fetchPages,
+  fetchPosts,
+  fetchPostsAgain,
+  fetchMenus
+} from "../wpService.js"
 
-const Context = React.createContext();
+const Context = React.createContext()
 
 class Provider extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       root: {},
       pages: [],
       posts: [],
+      menus: [],
       loading: true
-    };
+    }
   }
 
   componentDidMount() {
@@ -21,25 +28,25 @@ class Provider extends Component {
           root: response
         })
       )
-      .then(fetchMenus)
-      .then(response =>
-        this.setState({
-          menus: response
-        })
-      )
       .then(fetchPages)
-      .then(response =>
+      .then(response => {
         this.setState({
           pages: response
         })
-      )
+      })
+      .then(fetchMenus)
+      .then(response => {
+        this.setState({
+          menus: response
+        })
+      })
       .then(fetchPosts)
       .then(response =>
         this.setState({
           posts: response,
           loading: false
         })
-      );
+      )
   }
 
   render() {
@@ -49,8 +56,8 @@ class Provider extends Component {
       </Context.Provider>
     ) : (
       <div> Loading </div>
-    );
+    )
   }
 }
 
-export { Context, Provider };
+export { Context, Provider }

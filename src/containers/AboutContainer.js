@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Context } from './Provider'
-import About from '../modules/organisms/About'
+import React, { Component } from "react"
+import { Context } from "./Provider"
+import About from "../modules/organisms/About"
 
 class AboutContainer extends Component {
   render() {
