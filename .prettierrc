@@ -1,11 +1,13 @@
 {
-    "semi": false,
-    "overrides": [
-      {
-        "files": "*.test.js",
-        "options": {
-          "semi": true
-        }
+  "semi": false,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "options": {
+        "semi": true
       }
-    ]
-  }
+    }
+  ]
+}

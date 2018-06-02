@@ -1,10 +1,8 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 class Home extends Component {
   render() {
     const { pages, posts, menus } = this.props
-    console.dir(this.props)
-
     return (
       <div className="org-a9ca065c-a467-47bb-a252-2138bff1cb1d">
         <h1>Home</h1>

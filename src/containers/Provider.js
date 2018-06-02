@@ -1,11 +1,11 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   fetchRoot,
   fetchPages,
   fetchPosts,
-  fetchPostsAgain,
-  fetchMenus
-} from "../wpService.js"
+  fetchCategories,
+  fetchMenus,
+} from '../wpService.js'
 
 const Context = React.createContext()
 
@@ -17,7 +17,8 @@ class Provider extends Component {
       pages: [],
       posts: [],
       menus: [],
-      loading: true
+      categories: [],
+      loading: true,
     }
   }
 
@@ -25,26 +26,33 @@ class Provider extends Component {
     fetchRoot()
       .then(response =>
         this.setState({
-          root: response
+          root: response,
         })
       )
-      .then(fetchPages)
-      .then(response => {
-        this.setState({
-          pages: response
-        })
-      })
       .then(fetchMenus)
       .then(response => {
         this.setState({
-          menus: response
+          menus: response,
         })
       })
+      .then(fetchCategories)
+      .then(response => {
+        this.setState({
+          categories: response,
+        })
+      })
+      .then(fetchPages)
+      .then(response => {
+        this.setState({
+          pages: response,
+        })
+      })
+
       .then(fetchPosts)
       .then(response =>
         this.setState({
           posts: response,
-          loading: false
+          loading: false,
         })
       )
   }

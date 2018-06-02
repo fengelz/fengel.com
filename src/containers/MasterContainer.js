@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { Context } from './Provider'
-import About from '../modules/organisms/About'
+import Master from '../modules/organisms/Master'
 
-class AboutContainer extends Component {
+class MasterContainer extends Component {
   render() {
     return (
       <Context.Consumer>
         {data => {
-          return <About />
+          return <Master>{this.props.children}</Master>
         }}
       </Context.Consumer>
     )
   }
 }
 
-export default AboutContainer
+export default MasterContainer

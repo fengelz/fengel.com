@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { Context } from "./Provider"
-import Home from "../modules/organisms/Home"
+import React, { Component } from 'react'
+import { Context } from './Provider'
+import Home from '../modules/organisms/Home'
 
 class HomeContainer extends Component {
   render() {
