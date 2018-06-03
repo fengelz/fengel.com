@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import Html from '../../atoms/Html'
@@ -16,7 +17,9 @@ class Home extends Component {
           return (
             <div className="post" key={post.id}>
               <h2>
-                <a href={`${post.type}/${post.slug}`}>{post.title.rendered}</a>
+                <Link to={`${post.type}/${post.slug}`}>
+                  {post.title.rendered}
+                </Link>
               </h2>
 
               <Html content={post.excerpt.rendered} />
