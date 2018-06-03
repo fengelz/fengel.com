@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Nixie+One');
+
 @import '../../node_modules/normalize.css/normalize.css';
 @import '../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css';
 
@@ -5,5 +7,20 @@ body,
 html {
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
+  color: #333;
+  font-family: 'Nixie One', serif;
+  background-color: #fff;
+}
+a {
+  color: inherit;
+  transition: opacity 200ms ease-in;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+h1,
+h2,
+h3 {
+  font-family: 'Bungee Inline', sans-serif;
 }

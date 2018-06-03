@@ -1,0 +1,30 @@
+.atom-7456f3eb-0882-454a-a1dc-e3078dda7f34 {
+  margin: calc(50vh - 5rem) auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 0.75rem solid rgba(0, 0, 0, 0.2);
+  border-right: 0.75rem solid rgba(0, 0, 0, 0.2);
+  border-bottom: 0.75rem solid rgba(0, 0, 0, 0.2);
+  border-left: 0.75rem solid rgba(0, 0, 0, 1);
+  transform: translateZ(0);
+  animation: load8 1.1s infinite linear;
+
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  &:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+  }
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

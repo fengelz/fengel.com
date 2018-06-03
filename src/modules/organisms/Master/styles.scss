@@ -1,5 +1,4 @@
 .org-05396e7b-bd4b-4913-a46a-310f301f2b77 {
-  background: red;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -7,5 +6,23 @@
   & > section {
     height: 100vh;
     overflow: auto;
+    padding: 1.5rem;
+    max-width: 60rem;
+    box-shadow: -1.5rem 0rem 3rem 1.5rem rgba(0, 0, 0, 0.5);
+    animation: slide-in 200ms ease-in;
+    animation-direction: normal;
+    animation-delay: 500ms;
+    animation-fill-mode: forwards;
+    transform: translateX(-100vw);
+    background-color: #eee;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

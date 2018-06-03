@@ -7,6 +7,8 @@ import {
   fetchMenus,
 } from '../wpService.js'
 
+import Loader from '../modules/atoms/Loader'
+
 const Context = React.createContext()
 
 class Provider extends Component {
@@ -63,7 +65,7 @@ class Provider extends Component {
         {this.props.children}
       </Context.Provider>
     ) : (
-      <div> Loading </div>
+      <Loader />
     )
   }
 }

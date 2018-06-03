@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 
 import Html from '../../atoms/Html'
+
+import './styles.scss'
 
 class Home extends Component {
   render() {
@@ -9,12 +12,15 @@ class Home extends Component {
       <div className="org-a9ca065c-a467-47bb-a252-2138bff1cb1d">
         {posts.map(post => {
           console.log(post)
+          moment.locale('DA')
           return (
-            <div key={post.id}>
-              <h3>
+            <div className="post" key={post.id}>
+              <h2>
                 <a href={`${post.type}/${post.slug}`}>{post.title.rendered}</a>
-              </h3>
+              </h2>
+
               <Html content={post.excerpt.rendered} />
+              <time>{moment(post.date).format('Do MMM YYYY')}</time>
             </div>
           )
         })}
