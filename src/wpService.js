@@ -1,11 +1,11 @@
-import request from "request-promise"
+import request from 'request-promise'
 
 const routes = {
-  uri: "http://fengel.com/wp-json",
-  pages: "/wp/v2/pages/",
-  posts: "/wp/v2/posts/",
-  menus: "/wp-api-menus/v2/menus",
-  categories: "/wp/v2/categories",
+  uri: 'http://fengel.com/wp-json',
+  pages: '/wp/v2/pages/',
+  posts: '/wp/v2/posts/?per_page=100',
+  menus: '/wp-api-menus/v2/menus',
+  categories: '/wp/v2/categories',
 }
 
 const fetchRoot = () => {
@@ -14,7 +14,7 @@ const fetchRoot = () => {
   })
     .then(response => JSON.parse(response))
     .catch(err => {
-      console.log("Err", err)
+      console.log('Err', err)
     })
 }
 
@@ -24,7 +24,7 @@ const fetchPages = () => {
   })
     .then(response => JSON.parse(response))
     .catch(err => {
-      console.log("Err", err)
+      console.log('Err', err)
     })
 }
 
@@ -34,7 +34,7 @@ const fetchPosts = () => {
   })
     .then(response => JSON.parse(response))
     .catch(err => {
-      console.log("Err", err)
+      console.log('Err', err)
     })
 }
 
@@ -44,7 +44,7 @@ const fetchMenus = () => {
   })
     .then(response => JSON.parse(response))
     .catch(err => {
-      console.log("Err", err)
+      console.log('Err', err)
     })
 }
 
@@ -54,7 +54,7 @@ const fetchCategories = () => {
   })
     .then(response => JSON.parse(response))
     .catch(err => {
-      console.log("Err", err)
+      console.log('Err', err)
     })
 }
 

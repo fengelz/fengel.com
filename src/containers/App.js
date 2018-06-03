@@ -19,11 +19,13 @@ class App extends Component {
             <Router>
               <MasterContainer>
                 <AsideContainer />
-                <Switch>
-                  <Route exact path="/" component={HomeContainer} />
-                  <Route exact path="/about/" component={AboutContainer} />
-                  <Route component={HomeContainer} />
-                </Switch>
+                <section>
+                  <Switch>
+                    <Route exact path="/" component={HomeContainer} />
+                    <Route exact path="/about/" component={AboutContainer} />
+                    <Route component={HomeContainer} />
+                  </Switch>
+                </section>
               </MasterContainer>
             </Router>
           )

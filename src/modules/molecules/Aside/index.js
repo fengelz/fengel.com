@@ -9,7 +9,6 @@ class Aside extends PureComponent {
         <nav>
           <ul>
             {this.props.categories.map(cat => {
-              console.log(cat)
               return (
                 <li key={cat.id}>
                   <a href={`/${cat.taxonomy}/${cat.slug}`}>{cat.name}</a>

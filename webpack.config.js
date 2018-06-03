@@ -1,11 +1,11 @@
-const path = require("path")
+const path = require('path')
 
 module.exports = {
-  entry: "./src/index.js",
-  mode: "development",
+  entry: './src/index.js',
+  mode: 'development',
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -13,15 +13,16 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: "style-loader", // creates style nodes from JS strings
+            loader: 'style-loader', // creates style nodes from JS strings
           },
           {
-            loader: "css-loader", // translates CSS into CommonJS
+            loader: 'css-loader', // translates CSS into CommonJS
           },
           {
-            loader: "sass-loader", // compiles Sass to CSS
+            loader: 'sass-loader', // compiles Sass to CSS
             options: {
-              includePaths: [path.resolve(__dirname, "src/styles")],
+              url: false,
+              includePaths: [path.resolve(__dirname, 'src/styles')],
             },
           },
         ],
@@ -30,21 +31,21 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["env", "react"],
+            presets: ['env', 'react'],
           },
         },
       },
     ],
   },
   node: {
-    fs: "empty",
-    net: "empty",
-    tls: "empty",
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
   },
