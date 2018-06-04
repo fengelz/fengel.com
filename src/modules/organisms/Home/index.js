@@ -8,7 +8,7 @@ import './styles.scss'
 
 class Home extends Component {
   render() {
-    const { pages, posts, menus } = this.props
+    const { posts } = this.props
     return (
       <div className="org-a9ca065c-a467-47bb-a252-2138bff1cb1d">
         {posts.map(post => {

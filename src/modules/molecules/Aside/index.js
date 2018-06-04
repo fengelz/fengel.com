@@ -19,9 +19,7 @@ class Aside extends PureComponent {
                 {this.props.categories.map(cat => {
                   return (
                     <li key={cat.id}>
-                      <Link to={`/${cat.taxonomy}/${cat.slug}`}>
-                        {cat.name}
-                      </Link>
+                      <Link to={`/categories/${cat.slug}`}>{cat.name}</Link>
                     </li>
                   )
                 })}
@@ -35,9 +33,7 @@ class Aside extends PureComponent {
                 {this.props.tags.map(cat => {
                   return (
                     <li key={cat.id}>
-                      <Link to={`/${cat.taxonomy}/${cat.slug}`}>
-                        {cat.name}
-                      </Link>
+                      <Link to={`/tags/${cat.slug}`}>{cat.name}</Link>
                     </li>
                   )
                 })}

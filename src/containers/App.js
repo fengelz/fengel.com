@@ -25,6 +25,7 @@ class App extends Component {
                     <Route exact path="/" component={HomeContainer} />
                     <Route exact path="/about/" component={AboutContainer} />
                     <Route exact path="/post/:slug" component={PostContainer} />
+                    <Route path="/:taxonomy/:slug" component={HomeContainer} />
                     <Route component={HomeContainer} />
                   </Switch>
                 </section>
