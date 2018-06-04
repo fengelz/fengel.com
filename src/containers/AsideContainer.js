@@ -7,7 +7,15 @@ class AsideContainer extends Component {
     return (
       <Context.Consumer>
         {data => {
-          return <Aside categories={data.categories} menus={data.menus} />
+          return (
+            <Aside
+              categories={
+                data.categories
+              }
+              tags={data.tags}
+              menus={data.menus}
+            />
+          )
         }}
       </Context.Consumer>
     )

@@ -12,7 +12,6 @@ class Home extends Component {
     return (
       <div className="org-a9ca065c-a467-47bb-a252-2138bff1cb1d">
         {posts.map(post => {
-          console.log(post)
           moment.locale('DA')
           return (
             <div className="post" key={post.id}>
