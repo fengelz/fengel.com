@@ -6,26 +6,49 @@ import {
   fetchCategories,
   fetchTags,
   fetchMenus,
+  fetchPostById,
+  fetchPostBySlug,
 } from '../wpService.js'
 
 import Loader from '../modules/atoms/Loader'
 
-const Context = React.createContext({
-  data: {},
-  getContent: () => {},
-})
+const Context = React.createContext()
 
 class Provider extends Component {
   constructor() {
     super()
     this.getContent = match => {
-      console.log('match', match)
-      fetchPosts().then(response => {
-        this.setState({
-          posts: response,
-          loading: false,
+      if (match.params.taxonomy && match.params.slug) {
+        const tag = this.state[match.params.taxonomy].find(e => {
+          return e.slug === match.params.slug
         })
-      })
+        fetchPosts(match.params.taxonomy, tag.id).then(response => {
+          this.setState({
+            posts: response,
+            loading: false,
+          })
+        })
+      }
+      if (match.params.postSlug) {
+        console.log('postSlug', this.state.posts)
+        const post = this.state.posts.find(e => {
+          console.log(e, match.params.postSlug)
+          return e.slug === match.params.postSlug
+        })
+        fetchPost(post.id).then(response => {
+          this.setState({
+            content: [response],
+            loading: false,
+          })
+        })
+      } else {
+        fetchPosts().then(response => {
+          this.setState({
+            posts: response,
+            loading: false,
+          })
+        })
+      }
     }
 
     this.state = {
@@ -62,6 +85,7 @@ class Provider extends Component {
       })
       .then(fetchTags)
       .then(response => {
+        console.log(response, 'tagsresponse')
         this.setState({
           tags: response,
         })

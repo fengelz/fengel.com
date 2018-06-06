@@ -16,9 +16,7 @@ class Home extends Component {
           return (
             <div className="post" key={post.id}>
               <h2>
-                <Link to={`/${post.type}/${post.slug}`}>
-                  {post.title.rendered}
-                </Link>
+                <Link to={`/${post.slug}`}>{post.title.rendered}</Link>
               </h2>
 
               <Html content={post.excerpt.rendered} />

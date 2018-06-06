@@ -41,6 +41,28 @@ const fetchPosts = (taxonomy, id) => {
     })
 }
 
+const fetchPostById = id => {
+  const uri = `${routes.uri}${id}`
+  return request({
+    uri,
+  })
+    .then(response => JSON.parse(response))
+    .catch(err => {
+      console.log('Err', err)
+    })
+}
+const fetchPostBySlug = slug => {
+  const filter = slug ? `&slug=${slug}` : ''
+  const uri = `${routes.uri}${routes.posts}${filter}`
+  return request({
+    uri,
+  })
+    .then(response => JSON.parse(response))
+    .catch(err => {
+      console.log('Err', err)
+    })
+}
+
 const fetchMenus = () => {
   return request({
     uri: routes.uri + routes.menus,
@@ -77,4 +99,6 @@ export {
   fetchMenus,
   fetchCategories,
   fetchTags,
+  fetchPostById,
+  fetchPostBySlug,
 }

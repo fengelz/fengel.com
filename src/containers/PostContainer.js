@@ -7,14 +7,8 @@ class PostContainer extends Component {
     return (
       <Context.Consumer>
         {data => {
-          console.log(this.props.match.params.slug, data.posts)
-          return (
-            <Post
-              post={data.posts.find(post => {
-                return post.slug === this.props.match.params.slug
-              })}
-            />
-          )
+          data.getContent(this.props.match)
+          return <Post post={data.pcontent} />
         }}
       </Context.Consumer>
     )
