@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+// import Context from './Context'
+
 import {
   fetchRoot,
   fetchPages,
@@ -12,12 +14,29 @@ import {
 
 import Loader from '../modules/atoms/Loader'
 
-const Context = React.createContext()
+const Context = React.createContext({
+  data: {},
+  fetchData: match => {
+    console.log('data', data)
+  },
+})
+// const TestContext = React.createContext({
+//   data: {},
+//   fetchData: () => {
+//     console.log('data')
+//   },
+// })
 
 class Provider extends Component {
   constructor() {
     super()
     this.getContent = match => {
+      // console.log('get context', this.state)
+      // if (this.state.loading) return
+      // this.setState({ loading: true })
+      // setTimeout(() => {
+
+      // }, 200)
       if (match.params.taxonomy && match.params.slug) {
         const tag = this.state[match.params.taxonomy].find(e => {
           return e.slug === match.params.slug
@@ -28,8 +47,7 @@ class Provider extends Component {
             loading: false,
           })
         })
-      }
-      if (match.params.postSlug) {
+      } else if (match.params.postSlug) {
         console.log('postSlug', this.state.posts)
         const post = this.state.posts.find(e => {
           console.log(e, match.params.postSlug)
@@ -85,7 +103,6 @@ class Provider extends Component {
       })
       .then(fetchTags)
       .then(response => {
-        console.log(response, 'tagsresponse')
         this.setState({
           tags: response,
         })
@@ -94,31 +111,21 @@ class Provider extends Component {
       .then(response => {
         this.setState({
           pages: response,
+          loading: true,
+        })
+      })
+      .then(fetchPosts)
+      .then(response => {
+        this.setState({
+          posts: response,
           loading: false,
         })
       })
-    //   .then(fetchPosts)
-    //   .then(response =>
-    //     this.setState({
-    //       posts: response,
-    //       loading: false,
-    //     })
-    //   )
   }
-
-  //   getContent() {
-  //     this.setState({ loading: true })
-  //     fetchPosts().then(response =>
-  //       this.setState({
-  //         content: response,
-  //         loading: false,
-  //       })
-  //     )
-  //   }
 
   render() {
     return !this.state.loading ? (
-      <Context.Provider value={this.state}>
+      <Context.Provider value={this.state} fetchData={this.getContent}>
         {this.props.children}
       </Context.Provider>
     ) : (
