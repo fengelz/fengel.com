@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import Context from './Context'
+import MasterContainer from './MasterContainer'
 
 import {
   fetchRoot,
@@ -14,43 +14,24 @@ import {
 
 import Loader from '../modules/atoms/Loader'
 
-const Context = React.createContext({
-  data: {},
-  fetchData: match => {
-    console.log('data', data)
-  },
-})
-// const TestContext = React.createContext({
-//   data: {},
-//   fetchData: () => {
-//     console.log('data')
-//   },
-// })
+const Context = React.createContext()
 
 class Provider extends Component {
   constructor() {
     super()
     this.getContent = match => {
-      // console.log('get context', this.state)
-      // if (this.state.loading) return
-      // this.setState({ loading: true })
-      // setTimeout(() => {
-
-      // }, 200)
       if (match.params.taxonomy && match.params.slug) {
         const tag = this.state[match.params.taxonomy].find(e => {
           return e.slug === match.params.slug
         })
         fetchPosts(match.params.taxonomy, tag.id).then(response => {
           this.setState({
-            posts: response,
+            content: response,
             loading: false,
           })
         })
-      } else if (match.params.postSlug) {
-        console.log('postSlug', this.state.posts)
+      } else if (match.params && match.params.postSlug) {
         const post = this.state.posts.find(e => {
-          console.log(e, match.params.postSlug)
           return e.slug === match.params.postSlug
         })
         fetchPost(post.id).then(response => {
@@ -62,7 +43,7 @@ class Provider extends Component {
       } else {
         fetchPosts().then(response => {
           this.setState({
-            posts: response,
+            content: response,
             loading: false,
           })
         })
@@ -72,11 +53,10 @@ class Provider extends Component {
     this.state = {
       root: {},
       pages: [],
-      posts: [],
       menus: [],
       categories: [],
       tags: [],
-      content: [],
+      content: null,
       loading: true,
       getContent: this.getContent,
     }
@@ -111,25 +91,18 @@ class Provider extends Component {
       .then(response => {
         this.setState({
           pages: response,
-          loading: true,
-        })
-      })
-      .then(fetchPosts)
-      .then(response => {
-        this.setState({
-          posts: response,
           loading: false,
         })
       })
   }
 
   render() {
-    return !this.state.loading ? (
-      <Context.Provider value={this.state} fetchData={this.getContent}>
+    return this.state.loading ? (
+      <Loader />
+    ) : (
+      <Context.Provider value={this.state}>
         {this.props.children}
       </Context.Provider>
-    ) : (
-      <Loader />
     )
   }
 }
