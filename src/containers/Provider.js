@@ -20,32 +20,45 @@ class Provider extends Component {
   constructor() {
     super()
     this.getContent = match => {
+      console.log(this.state)
+      const content = this.state.cache.find(cacheItem => {
+        return cacheItem.url === match.url
+      })
+      if (content !== undefined) {
+        return
+      }
+
       if (match.params.taxonomy && match.params.slug) {
         const tag = this.state[match.params.taxonomy].find(e => {
           return e.slug === match.params.slug
         })
         fetchPosts(match.params.taxonomy, tag.id).then(response => {
-          this.setState({
+          console.log('Fetched posts', response)
+          const cache = this.state.cache
+          cache.push({
+            url: `${match.url}`,
             content: response,
-            loading: false,
           })
+          this.setState({ cache })
         })
-      } else if (match.params && match.params.postSlug) {
-        const post = this.state.posts.find(e => {
-          return e.slug === match.params.postSlug
-        })
-        fetchPost(post.id).then(response => {
-          this.setState({
-            content: [response],
-            loading: false,
+      } else if (match.params.postSlug) {
+        fetchPostBySlug(match.params.postSlug).then(response => {
+          console.log('here we are', response)
+          const cache = this.state.cache
+          cache.push({
+            url: `${match.url}`,
+            content: response[0],
           })
+          this.setState({ cache })
         })
       } else {
         fetchPosts().then(response => {
-          this.setState({
+          const cache = this.state.cache
+          cache.push({
+            url: `${match.url}`,
             content: response,
-            loading: false,
           })
+          this.setState({ cache })
         })
       }
     }
@@ -56,10 +69,13 @@ class Provider extends Component {
       menus: [],
       categories: [],
       tags: [],
-      content: null,
+      cache: [],
       loading: true,
       getContent: this.getContent,
     }
+  }
+  componentDidUpdate() {
+    // this.setState({ loading: true })
   }
 
   componentDidMount() {

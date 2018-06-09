@@ -11,7 +11,6 @@ class RoutedComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('update', this.props)
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ routeChanged: true })
       return

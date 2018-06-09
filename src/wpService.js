@@ -54,6 +54,7 @@ const fetchPostById = id => {
 const fetchPostBySlug = slug => {
   const filter = slug ? `&slug=${slug}` : ''
   const uri = `${routes.uri}${routes.posts}${filter}`
+  console.log(uri)
   return request({
     uri,
   })
