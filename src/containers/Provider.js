@@ -19,8 +19,8 @@ const Context = React.createContext()
 class Provider extends Component {
   constructor() {
     super()
-    this.getContent = match => {
-      console.log(this.state)
+
+    this.fetchContent = match => {
       const content = this.state.cache.find(cacheItem => {
         return cacheItem.url === match.url
       })
@@ -33,7 +33,6 @@ class Provider extends Component {
           return e.slug === match.params.slug
         })
         fetchPosts(match.params.taxonomy, tag.id).then(response => {
-          console.log('Fetched posts', response)
           const cache = this.state.cache
           cache.push({
             url: `${match.url}`,
@@ -43,7 +42,6 @@ class Provider extends Component {
         })
       } else if (match.params.postSlug) {
         fetchPostBySlug(match.params.postSlug).then(response => {
-          console.log('here we are', response)
           const cache = this.state.cache
           cache.push({
             url: `${match.url}`,
@@ -63,6 +61,14 @@ class Provider extends Component {
       }
     }
 
+    this.getContent = url => {
+      return (
+        this.state.cache.find(e => {
+          return e.url === url
+        }) || null
+      )
+    }
+
     this.state = {
       root: {},
       pages: [],
@@ -70,12 +76,10 @@ class Provider extends Component {
       categories: [],
       tags: [],
       cache: [],
+      content: this.getContent,
       loading: true,
-      getContent: this.getContent,
+      fetchContent: this.fetchContent,
     }
-  }
-  componentDidUpdate() {
-    // this.setState({ loading: true })
   }
 
   componentDidMount() {

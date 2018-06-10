@@ -1,56 +1,31 @@
 import React from 'react'
-import { Context, TestContext } from './Provider'
-import { withRouter } from 'react-router'
+import { Context } from './Provider'
 
-import RoutedComponent from './RoutedComponent'
+import ConsumingComponent from './ConsumingComponent'
 import Home from '../modules/organisms/Home'
+import Loader from '../modules/atoms/Loader'
 
-class HomeContainer extends RoutedComponent {
+const HomeContainer = props => (
+  <Context.Consumer>
+    {context => <HomeHandler {...props} context={context} />}
+  </Context.Consumer>
+)
+
+class HomeHandler extends ConsumingComponent {
   constructor() {
     super()
   }
-  componentDidMount() {
-    const renderedContent = (
+
+  render() {
+    return (
       <Context.Consumer>
         {data => {
-          const content = data.cache.find(content => {
-            return content.url === this.props.match.url
-          })
-          if (content) {
-            return <Home posts={content.content} />
-          } else {
-            data.getContent(this.props.match)
-            return <div>Loading</div>
-          }
+          const content = data.content(this.props.match.url)
+          return content ? <Home posts={content.content} /> : <Loader />
         }}
       </Context.Consumer>
     )
-    this.setState({ renderedContent })
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      const renderedContent = (
-        <Context.Consumer>
-          {data => {
-            const content = data.cache.find(content => {
-              return content.url === this.props.match.url
-            })
-            if (content) {
-              return <Home posts={content.content} />
-            } else {
-              data.getContent(this.props.match)
-              return <div>Loading</div>
-            }
-          }}
-        </Context.Consumer>
-      )
-      this.setState({ renderedContent })
-    }
-  }
-
-  render() {
-    return this.state.renderedContent || <div />
   }
 }
 
-export default withRouter(HomeContainer)
+export default HomeContainer

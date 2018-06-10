@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Context } from './Provider'
 import HomeContainer from './HomeContainer'
-import AboutContainer from './AboutContainer'
 import MasterContainer from './MasterContainer'
 import AsideContainer from './AsideContainer'
 import PostContainer from './PostContainer'
 
-import '../styles/settings.scss'
 import '../styles/index.scss'
 
 class App extends Component {
