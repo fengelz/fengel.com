@@ -1,7 +1,7 @@
 import request from 'request-promise'
 
 const routes = {
-  uri: 'http://fengel.com/wp-json',
+  uri: 'http://wordpress.fengel.com/wp-json',
   pages: '/wp/v2/pages/',
   posts: '/wp/v2/posts/?per_page=100',
   menus: '/wp-api-menus/v2/menus',
