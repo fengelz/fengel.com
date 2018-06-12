@@ -1,13 +1,10 @@
 const path = require('path')
-var BabelPlugin = require('babel-webpack-plugin')
+const merge = require('webpack-merge')
+const common = require('./webpack.common.js')
+const BabelPlugin = require('babel-webpack-plugin')
 
-module.exports = {
-  entry: './src/index.js',
-  mode: 'development',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+module.exports = merge(common, {
+  mode: 'production',
   module: {
     rules: [
       {
@@ -28,6 +25,7 @@ module.exports = {
           },
         ],
       },
+
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -45,31 +43,4 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    historyApiFallback: true,
-  },
-  plugins: [
-    new BabelPlugin({
-      test: /\.js$/,
-      presets: [
-        [
-          'env',
-          {
-            exclude: ['transform-regenerator'],
-            loose: true,
-            modules: false,
-            targets: {
-              browsers: ['>1%'],
-            },
-            useBuiltIns: true,
-          },
-        ],
-      ],
-      sourceMaps: false,
-      compact: false,
-    }),
-  ],
-}
+})

@@ -83,18 +83,18 @@ class Provider extends Component {
   }
 
   componentDidMount() {
-    fetchRoot()
+    fetchMenus()
       .then(response =>
         this.setState({
           root: response,
         })
       )
-      .then(fetchMenus)
-      .then(response => {
-        this.setState({
-          menus: response,
-        })
-      })
+      // .then(fetchRoot)
+      // .then(response => {
+      //   this.setState({
+      //     menus: response,
+      //   })
+      // })
       .then(fetchCategories)
       .then(response => {
         this.setState({
